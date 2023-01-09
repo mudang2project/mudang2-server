@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CameraController {
     @Autowired
     private final CameraProvider cameraProvider;
-
-
-
+    
     public CameraController(CameraProvider cameraProvider) {
         this.cameraProvider = cameraProvider;
     }
