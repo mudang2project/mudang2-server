@@ -6,8 +6,6 @@ spring:
     name: mudang2
 
   datasource:
-    platform: mariadb
     url: jdbc:mariadb://localhost:3306/mudang2DB
-    # url 형식은 jdbc:mysql://RDS의 EndPoint/내부 DB 스키마명 입니다.
-    username: mudang2DB # 만약 따로 설정하지 않으셨다면 기본값은 admin 입니다
-    password: Project654321 # 비밀번호를 입력해주세요!
+    username: mudang2
+    password: Project654321
