@@ -15,12 +15,13 @@ public class GpsDao {
     public void setDataSource(DataSource dataSource) { this.jdbcTemplate = new JdbcTemplate(dataSource); }
 
     public GetLocation getLocation(int busIdx) {
-        String getLocationQuery = "SELECT lat, lon FROM gps_device WHERE busIdx = ? ORDER BY createdAt DESC LIMIT 1";
+        String getLocationQuery = "SELECT busIdx, lat, lon FROM gps_device WHERE busIdx = ? ORDER BY createdAt DESC LIMIT 1";
         int getBusIdxParams = busIdx;
         return this.jdbcTemplate.queryForObject(getLocationQuery,
                 (rs, rowNum) -> new GetLocation(
-                        rs.getString("lat"), rs.getString("lon"), getBusIdxParams
-                )
+                        rs.getInt("busIdx"),
+                        rs.getString("lat"), rs.getString("lon")), getBusIdxParams
                 );
+
     }
 }

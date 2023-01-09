@@ -17,8 +17,8 @@ public class GpsController {
     public GpsController(GpsProvider gpsProvider) { this.gpsProvider = gpsProvider; }
 
     @ResponseBody
-    @GetMapping("/location")
-    public BaseResponse<GetLocation> location (@PathVariable("busIdx") int busIdx) {
+    @GetMapping("/location/{busIdx}")
+    public BaseResponse<GetLocation> location(@PathVariable("busIdx") int busIdx) {
         try {
             GetLocation getLocationRes = gpsProvider.getLocation(busIdx);
 

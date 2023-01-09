@@ -8,7 +8,7 @@ import lombok.AllArgsConstructor;
 @Setter
 @AllArgsConstructor
 public class GetLocation {
+    private int busIdx;
     private String lat;
     private String lon;
-    private int busIdx;
 }
