@@ -2,7 +2,7 @@ package com.demo.mudang2.src.gps;
 
 import com.demo.mudang2.config.BaseException;
 import com.demo.mudang2.config.BaseResponse;
-import com.demo.mudang2.src.camera.model.GetLocation;
+import com.demo.mudang2.src.gps.model.GetLocation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +20,7 @@ public class GpsController {
     @GetMapping("/location")
     public BaseResponse<GetLocation> location (@PathVariable("busIdx") int busIdx) {
         try {
-            GetLocation getLocationRes = gpsProvider.getLocation();
+            GetLocation getLocationRes = gpsProvider.getLocation(busIdx);
 
             if (getLocationRes == null) {
                 return new BaseResponse<>(GET_LOCATION_FAILED);

@@ -1,4 +1,4 @@
-package com.demo.mudang2.src.camera.model;
+package com.demo.mudang2.src.gps.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,4 +10,5 @@ import lombok.AllArgsConstructor;
 public class GetLocation {
     private String lat;
     private String lon;
+    private int busIdx;
 }

@@ -1,7 +1,7 @@
 package com.demo.mudang2.src.gps;
 
 import com.demo.mudang2.config.BaseException;
-import com.demo.mudang2.src.camera.model.GetLocation;
+import com.demo.mudang2.src.gps.model.GetLocation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +14,9 @@ public class GpsProvider {
     @Autowired
     public GpsProvider(GpsDao gpsDao) { this.gpsDao = gpsDao; }
 
-    public GetLocation getLocation() throws BaseException {
+    public GetLocation getLocation(int busIdx) throws BaseException {
         try {
-            GetLocation getLocationRes = gpsDao.getLocation();
+            GetLocation getLocationRes = gpsDao.getLocation(busIdx);
             return getLocationRes;
         } catch (Exception exception) {
             throw new BaseException(DATABASE_ERROR);
