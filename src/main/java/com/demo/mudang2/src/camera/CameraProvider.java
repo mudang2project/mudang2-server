@@ -5,6 +5,7 @@ import com.demo.mudang2.src.camera.model.GetHeadCount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import static com.demo.mudang2.config.BaseResponseStatus.CAMERA_HEADCOUNT_DELAY;
 import static com.demo.mudang2.config.BaseResponseStatus.DATABASE_ERROR;
 
 @Service
@@ -17,6 +18,10 @@ public class CameraProvider {
     }
 
     public GetHeadCount getHeadCount() throws BaseException {
+        Long interval = cameraDao.getHeadCount().getInterval();
+        if(interval > 60) {
+            throw new BaseException(CAMERA_HEADCOUNT_DELAY);
+        }
         try {
             GetHeadCount getHeadCountRes = cameraDao.getHeadCount();
             return getHeadCountRes;

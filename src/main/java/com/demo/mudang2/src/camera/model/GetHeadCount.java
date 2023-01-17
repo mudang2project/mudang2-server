@@ -18,4 +18,5 @@ import lombok.Setter;
  */
 public class GetHeadCount {
     private int headCount;
+    private Long interval;
 }

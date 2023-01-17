@@ -11,4 +11,5 @@ public class GetLocation {
     private int busIdx;
     private String lat;
     private String lon;
+    private Long interval;
 }
