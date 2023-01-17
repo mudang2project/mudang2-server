@@ -6,6 +6,8 @@ import com.demo.mudang2.src.gps.model.GetLocation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static com.demo.mudang2.config.BaseResponseStatus.GET_LOCATION_FAILED;
 
 @RestController
@@ -17,10 +19,10 @@ public class GpsController {
     public GpsController(GpsProvider gpsProvider) { this.gpsProvider = gpsProvider; }
 
     @ResponseBody
-    @GetMapping("/location/{busIdx}")
-    public BaseResponse<GetLocation> location(@PathVariable("busIdx") int busIdx) {
+    @GetMapping("/location")
+    public BaseResponse<List<GetLocation>> location() {
         try {
-            GetLocation getLocationRes = gpsProvider.getLocation(busIdx);
+            List<GetLocation> getLocationRes = gpsProvider.getLocation();
 
             if (getLocationRes == null) {
                 return new BaseResponse<>(GET_LOCATION_FAILED);
