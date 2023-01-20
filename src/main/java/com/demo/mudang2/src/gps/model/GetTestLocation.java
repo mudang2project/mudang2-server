@@ -7,10 +7,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class GetLocation {
+public class GetTestLocation {
     private int busIdx;
     private String lat;
     private String lon;
-    private Long interval;
 }
 
