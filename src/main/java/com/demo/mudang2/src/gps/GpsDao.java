@@ -2,6 +2,7 @@ package com.demo.mudang2.src.gps;
 
 
 import com.demo.mudang2.src.gps.model.GetLocation;
+import com.demo.mudang2.src.gps.model.GetTestLocation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -29,5 +30,14 @@ public class GpsDao {
                         rs.getString("lon"),
                         rs.getLong("interval"))
         );
+    }
+
+    public int createTest(GetTestLocation getTestLocation) {
+        String createTestQuery = "insert into gps_device (buIdx, lat, lon) values (?,?,?)";
+        Object[] createTestParams = new Object[]{getTestLocation.getBusIdx(), getTestLocation.getLat(), getTestLocation.getLon()}; // 동적 쿼리의 ?부분에 주입될 값
+        this.jdbcTemplate.update(createTestQuery, createTestParams);
+
+        String lastInsertIdQuery = "select last_insert_id()"; // 가장 마지막에 삽입된(생성된) id값은 가져온다.
+        return this.jdbcTemplate.queryForObject(lastInsertIdQuery, int.class);
     }
 }
