@@ -42,16 +42,27 @@ public class GpsController {
     }
 
 
+    //response 유
+
+//    @ResponseBody
+//    @PostMapping("/location/{busIdx}/{lat}/{lon}")
+//    public BaseResponse<PostLocationRes> insertLocation(@PathVariable("busIdx") int busIdx, @PathVariable("lat") String lat, @PathVariable("lon") String lon) {
+//        try{
+//            PostLocationRes locationRes = gpsService.createLocation(busIdx, lat, lon);
+//            return new BaseResponse<>(locationRes);
+//
+//        }catch (BaseException exception) {
+//            return new BaseResponse<>((exception.getStatus()));
+//        }
+//    }
+
+    //response 무
+
     @ResponseBody
     @PostMapping("/location/{busIdx}/{lat}/{lon}")
-    public BaseResponse<PostLocationRes> insertLocation(@PathVariable("busIdx") int busIdx, @PathVariable("lat") String lat, @PathVariable("lon") String lon) {
-        try{
-            PostLocationRes locationRes = gpsService.createLocation(busIdx, lat, lon);
-            return new BaseResponse<>(locationRes);
+    public void insertLocation(@PathVariable("busIdx") int busIdx, @PathVariable("lat") String lat, @PathVariable("lon") String lon) throws BaseException {
+            gpsService.createLocation(busIdx, lat, lon);
 
-        }catch (BaseException exception) {
-            return new BaseResponse<>((exception.getStatus()));
-        }
     }
 
 

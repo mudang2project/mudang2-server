@@ -33,16 +33,25 @@ public class CameraController {
 
     }
 
-    @ResponseBody
-    @GetMapping("/headcount/{headcount}")
-    public BaseResponse<PostHeadCountRes> insertHeadCount(@PathVariable("headCount") int headCount) {
-        try{
-            PostHeadCountRes headCountRes = cameraService.createHeadCount(headCount);
-            return new BaseResponse<>(headCountRes);
+    //response 유
 
-        }catch (BaseException exception) {
-            return new BaseResponse<>((exception.getStatus()));
-        }
+//    @ResponseBody
+//    @PostMapping("/headcount/{headCount}")
+//    public BaseResponse<PostHeadCountRes> insertHeadCount(@PathVariable("headCount") int headCount) {
+//        try{
+//            PostHeadCountRes headCountRes = cameraService.createHeadCount(headCount);
+//            return new BaseResponse<>(headCountRes);
+//
+//        }catch (BaseException exception) {
+//            return new BaseResponse<>((exception.getStatus()));
+//        }
+//    }
+
+    //response 무
+    @ResponseBody
+    @PostMapping("/headcount/{headCount}")
+    public void insertHeadCount(@PathVariable("headCount") int headCount) throws BaseException {
+            cameraService.createHeadCount(headCount);
     }
 
 }

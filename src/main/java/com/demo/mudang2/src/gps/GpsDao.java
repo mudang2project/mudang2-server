@@ -31,12 +31,22 @@ public class GpsDao {
         );
     }
 
+    //response 유
+
+//    public int createLocation(int busIdx, String lat, String lon) {
+//        String createLocationQuery = "insert into gps_device (busIdx, lat, lon) values (?,?,?)";
+//        Object[] createLocationParams = new Object[]{busIdx, lat, lon}; // 동적 쿼리의 ?부분에 주입될 값
+//        this.jdbcTemplate.update(createLocationQuery, createLocationParams);
+//
+//        String lastInsertIdQuery = "select last_insert_id()"; // 가장 마지막에 삽입된(생성된) id값은 가져온다.
+//        return this.jdbcTemplate.queryForObject(lastInsertIdQuery, int.class);
+//    }
+
+    //response 무
+
     public int createLocation(int busIdx, String lat, String lon) {
         String createLocationQuery = "insert into gps_device (busIdx, lat, lon) values (?,?,?)";
         Object[] createLocationParams = new Object[]{busIdx, lat, lon}; // 동적 쿼리의 ?부분에 주입될 값
-        this.jdbcTemplate.update(createLocationQuery, createLocationParams);
-
-        String lastInsertIdQuery = "select last_insert_id()"; // 가장 마지막에 삽입된(생성된) id값은 가져온다.
-        return this.jdbcTemplate.queryForObject(lastInsertIdQuery, int.class);
+        return this.jdbcTemplate.update(createLocationQuery, createLocationParams);
     }
 }
