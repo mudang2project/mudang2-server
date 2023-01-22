@@ -1,8 +1,7 @@
 package com.demo.mudang2.src.gps;
 
 import com.demo.mudang2.config.BaseException;
-import com.demo.mudang2.src.gps.model.GetTestLocation;
-import com.demo.mudang2.src.gps.model.GetTestLocationRes;
+import com.demo.mudang2.src.gps.model.PostLocationRes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,10 +19,10 @@ public class GpsService {
         this.gpsProvider = gpsProvider;
     }
 
-    public GetTestLocationRes createTest(GetTestLocation getTestLocation) throws BaseException {
+    public PostLocationRes createLocation(int busIdx, String lat, String lon) throws BaseException {
         try{
-            int idx = gpsDao.createTest(getTestLocation);
-            return new GetTestLocationRes(idx);
+            int idx = gpsDao.createLocation(busIdx, lat, lon);
+            return new PostLocationRes(idx);
 
         }catch (Exception exception) {
             throw new BaseException(DATABASE_ERROR);

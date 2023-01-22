@@ -28,4 +28,13 @@ public class CameraDao {
                         rs.getLong("interval")));
     }
 
+    public int createHeadCount(int headCount) {
+        String createHeadCountQuery = "insert into camera_device (headCount) values (?)";
+        Object[] createHeadCountParams = new Object[]{headCount}; // 동적 쿼리의 ?부분에 주입될 값
+        this.jdbcTemplate.update(createHeadCountQuery, createHeadCountParams);
+
+        String lastInsertIdQuery = "select last_insert_id()"; // 가장 마지막에 삽입된(생성된) id값은 가져온다.
+        return this.jdbcTemplate.queryForObject(lastInsertIdQuery, int.class);
+    }
+
 }

@@ -3,20 +3,22 @@ package com.demo.mudang2.src.camera;
 import com.demo.mudang2.config.BaseException;
 import com.demo.mudang2.config.BaseResponse;
 import com.demo.mudang2.src.camera.model.GetHeadCount;
+import com.demo.mudang2.src.camera.model.PostHeadCountRes;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping("/cameras")
 public class CameraController {
     @Autowired
     private final CameraProvider cameraProvider;
+    @Autowired
+    private final CameraService cameraService;
     
-    public CameraController(CameraProvider cameraProvider) {
+    public CameraController(CameraProvider cameraProvider, CameraService cameraService) {
         this.cameraProvider = cameraProvider;
+        this.cameraService = cameraService;
     }
 
     @ResponseBody
@@ -30,4 +32,17 @@ public class CameraController {
         }
 
     }
+
+    @ResponseBody
+    @GetMapping("/headcount/{headcount}")
+    public BaseResponse<PostHeadCountRes> insertHeadCount(@PathVariable("headCount") int headCount) {
+        try{
+            PostHeadCountRes headCountRes = cameraService.createHeadCount(headCount);
+            return new BaseResponse<>(headCountRes);
+
+        }catch (BaseException exception) {
+            return new BaseResponse<>((exception.getStatus()));
+        }
+    }
+
 }

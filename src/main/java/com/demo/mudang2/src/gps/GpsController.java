@@ -3,8 +3,7 @@ package com.demo.mudang2.src.gps;
 import com.demo.mudang2.config.BaseException;
 import com.demo.mudang2.config.BaseResponse;
 import com.demo.mudang2.src.gps.model.GetLocation;
-import com.demo.mudang2.src.gps.model.GetTestLocation;
-import com.demo.mudang2.src.gps.model.GetTestLocationRes;
+import com.demo.mudang2.src.gps.model.PostLocationRes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,37 +41,13 @@ public class GpsController {
         }
     }
 
-//    @ResponseBody
-//    @GetMapping("/gps/test")
-//    public String getTestLocation() {
-//        StringBuffer result  = new StringBuffer();
-//        try {
-//            StringBuilder urlBuilder = new StringBuilder("http://210.102.178.97/gps/test");
-//            urlBuilder.append("&type=json");
-//            URL url = new URL(urlBuilder.toString());
-//            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-//            conn.setRequestMethod("POST");
-//            BufferedReader rd = null;
-//            String line;
-//            while ((line = rd.readLine()) != null) {
-//                result.append(line + "\n");
-//            }
-//            rd.close();
-//            conn.disconnect();
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        return result + "";
-//    }
 
     @ResponseBody
-    @PostMapping("/test/post")
-    public BaseResponse<GetTestLocationRes> postTest(@RequestBody GetTestLocation getTestLocation) {
+    @PostMapping("/location/{busIdx}/{lat}/{lon}")
+    public BaseResponse<PostLocationRes> insertLocation(@PathVariable("busIdx") int busIdx, @PathVariable("lat") String lat, @PathVariable("lon") String lon) {
         try{
-            GetTestLocationRes test = gpsService.createTest(getTestLocation);
-            return new BaseResponse<>(test);
+            PostLocationRes locationRes = gpsService.createLocation(busIdx, lat, lon);
+            return new BaseResponse<>(locationRes);
 
         }catch (BaseException exception) {
             return new BaseResponse<>((exception.getStatus()));
