@@ -1,4 +1,10 @@
 # mudang2-server
+무당이 위치제공 서비스 어플 서버에 관한 내용입니다.
+
+## API
+1. DB에서 busIdx별로 위도, 경도 데이터(lat, lon) 가져오기
+2. DB에서 사람 수 데이터(headCount) 가져오기
+
 # adminPage
 무당이 관리자 대시보드 페이지에 관한 내용입니다.
 
