@@ -18,10 +18,6 @@ public class CameraProvider {
     }
 
     public GetHeadCount getHeadCount() throws BaseException {
-        Long interval = cameraDao.getHeadCount().getInterval();
-        if(interval > 60) {
-            throw new BaseException(CAMERA_HEADCOUNT_DELAY);
-        }
         try {
             GetHeadCount getHeadCountRes = cameraDao.getHeadCount();
             return getHeadCountRes;

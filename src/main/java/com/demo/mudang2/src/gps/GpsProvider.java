@@ -18,12 +18,7 @@ public class GpsProvider {
     public GpsProvider(GpsDao gpsDao) { this.gpsDao = gpsDao; }
 
     public List<GetLocation> getLocation() throws BaseException {
-//        List<GetLocation> getLocations = gpsDao.getLocation();
-//        for(int i=0; i < getLocations.size(); i++) {
-//            if(getLocations.get(i).getInterval() > 60000) {
-//                throw new BaseException(GET_LOCATION_DELAY);
-//            }
-//        }
+
         try {
             List<GetLocation> getLocationRes = gpsDao.getLocation();
             return getLocationRes;
