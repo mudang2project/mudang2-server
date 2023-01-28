@@ -1,19 +1,18 @@
 package com.demo.mudang2.src.admin.model;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
-import java.util.List;
-
 @Getter
 @Setter
 @AllArgsConstructor
-public class GetRecentData {
-    private List<GetRecentGps> getGpsList;
-    private int headCount;
+public class GetRecentGps {
+    private int busIdx;
+    private String lat;
+    private String lon;
     private Date createdAt;
-    private String time;
+    private String update;
+
 }
