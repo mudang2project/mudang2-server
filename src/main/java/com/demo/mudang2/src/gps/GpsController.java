@@ -42,7 +42,7 @@ public class GpsController {
     }
 
 
-    //response 유
+    //위치 저장 response 유
 
 //    @ResponseBody
 //    @PostMapping("/location/{busIdx}/{lat}/{lon}")
@@ -56,7 +56,7 @@ public class GpsController {
 //        }
 //    }
 
-    //response 무
+    //위치 저장 response 무
 
     @ResponseBody
     @PostMapping("/location/{busIdx}/{lat}/{lon}")

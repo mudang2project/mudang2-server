@@ -15,5 +15,5 @@ public class GetRecentData {
     private List<GetRecentGps> getGpsList;
     private int headCount;
     private Date createdAt;
-    private String time;
+    private String update;
 }
