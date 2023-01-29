@@ -98,7 +98,7 @@ public class AdminDao {
 
         return this.jdbcTemplate.query(getDataCheckQuery,
                 (rs, rowNum) -> new GetDataCheck(
-                        rs.getInt("buIdx"),
+                        rs.getInt("busIdx"),
                         rs.getString("dayData"),
                         rs.getString("monthData"))
         );
