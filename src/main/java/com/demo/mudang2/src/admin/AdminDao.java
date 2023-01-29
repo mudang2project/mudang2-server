@@ -4,8 +4,6 @@ import com.demo.mudang2.src.admin.model.GetDataCheck;
 import com.demo.mudang2.src.admin.model.GetPower;
 import com.demo.mudang2.src.admin.model.GetRecentData;
 import com.demo.mudang2.src.admin.model.GetRecentGps;
-import com.demo.mudang2.src.camera.model.GetHeadCount;
-import com.demo.mudang2.src.gps.model.GetLocation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -93,7 +91,8 @@ public class AdminDao {
 
     //데이터 사용량 확인 조회
     public List<GetDataCheck> getDataCheck() {
-        String getDataCheckQuery = "select busIdx, SUM(if(DATE_FORMAT(createdAt, '%d') < 13,data,0)) as 'dayData', SUM(if(DATE_FORMAT(createdAt, '%m') = month(NOW()), data, 0) ) as 'monthData'\n" +
+        String getDataCheckQuery = "select busIdx, SUM(if(date(createdAt) = date(NOW()), data, 0)) as 'dayData', sum(if((month(createdAt) = month(date_add(now(), interval -1 month)) and date_format(createdAt, '%d') >= 13)\n" +
+                "    or (month(createdAt) = month(now()) and date_format(createdAt, '%d') < 13), data, 0)) as 'monthData'\n" +
                 "from data\n" +
                 "group by busIdx";
 
