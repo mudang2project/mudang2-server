@@ -87,4 +87,13 @@ public class AdminDao {
         );
     }
 
+    //데이터 사용량 response 무
+    public int createDataCheck(int busIdx, Long data) {
+        String createDataCheckQuery = "insert into data (busIdx, data) values (?,?)";
+        Object[] createDataCheckParams = new Object[]{busIdx, data}; // 동적 쿼리의 ?부분에 주입될 값
+        return this.jdbcTemplate.update(createDataCheckQuery, createDataCheckParams);
+    }
+
+
 }
+

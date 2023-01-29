@@ -5,10 +5,7 @@ import com.demo.mudang2.config.BaseResponse;
 import com.demo.mudang2.src.admin.model.GetPower;
 import com.demo.mudang2.src.admin.model.GetRecentData;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -60,6 +57,14 @@ public class AdminController {
             return new BaseResponse<>((exception.getStatus()));
         }
 
+
+    }
+
+    //데이터 사용량 response 무
+    @ResponseBody
+    @PostMapping("/data/{busIdx}/{data}")
+    public void insertDataCheck(@PathVariable("busIdx") int busIdx, @PathVariable("data") Long data) throws BaseException {
+        adminService.createDataCheck(busIdx, data);
 
     }
 
