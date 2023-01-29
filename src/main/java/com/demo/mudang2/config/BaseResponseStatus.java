@@ -62,7 +62,9 @@ public enum BaseResponseStatus {
     INSERT_FAIL_LOCATION(false, 4023, "위치 정보가 저장되지 않았습니다."),
 
     CAMERA_HEADCOUNT_DELAY(false, 4030, "카메라 대기인원수가 업데이트 되지 않고 있습니다."),
-    INSERT_FAIL_HEADCOUNT(false, 4031, "카메라 대기인원수가 저장되지 않았습니다.");
+    INSERT_FAIL_HEADCOUNT(false, 4031, "카메라 대기인원수가 저장되지 않았습니다."),
+
+    GET_POWER_FAILED(false, 4040, "전원 확인에 실패하였습니다.");
     
 
     // 5000 : 필요시 만들어서 쓰세요
