@@ -1,5 +1,6 @@
 package com.demo.mudang2.src.admin;
 
+import com.demo.mudang2.src.admin.model.GetDataCheck;
 import com.demo.mudang2.src.admin.model.GetPower;
 import com.demo.mudang2.src.admin.model.GetRecentData;
 import com.demo.mudang2.src.admin.model.GetRecentGps;
@@ -22,6 +23,7 @@ public class AdminDao {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    //디바이스 onoff 조회
     public List<GetPower> getPower() {
         String getPowerQuery = "(select t.busIdx as 'idx', t.interval from ( select busIdx, lat, lon, timestampdiff(second, createdAt, NOW()) as 'interval'\n" +
                 "from gps_device where (busIdx, createdAt) in (select busIdx, max(createdAt) as time from gps_device group by busIdx)\n" +
@@ -39,6 +41,7 @@ public class AdminDao {
         );
     }
 
+    //최근 데이터 조회 - 정류장 디바이스 + 무당이 디바이스
     public GetRecentData getRecentData() {
         String getDataQuery = "select headCount, createdAt,\n" +
                 "       case when timestampdiff(minute, createdAt, CURRENT_TIMESTAMP()) <= 0 then CONCAT(TIMESTAMPDIFF(second , createdAt , NOW()), '초 전')\n" +
@@ -61,6 +64,7 @@ public class AdminDao {
                 });
     }
 
+    //최근 데이터 조회 - 무당이 디바이스 리스트
     public List<GetRecentGps> getGpsList() {
         String getGpsQuery = "select busIdx,  lat, lon, createdAt,\n" +
                 "       case when timestampdiff(minute, t.createdAt, CURRENT_TIMESTAMP()) <= 0 then CONCAT(TIMESTAMPDIFF(second , createdAt , NOW()), '초 전')\n" +
@@ -84,6 +88,20 @@ public class AdminDao {
                         rs.getString("lon"),
                         rs.getDate("createdAt"),
                         rs.getString("update"))
+        );
+    }
+
+    //데이터 사용량 확인 조회
+    public List<GetDataCheck> getDataCheck() {
+        String getDataCheckQuery = "select busIdx, SUM(if(DATE_FORMAT(createdAt, '%d') < 13,data,0)) as 'dayData', SUM(if(DATE_FORMAT(createdAt, '%m') = month(NOW()), data, 0) ) as 'monthData'\n" +
+                "from data\n" +
+                "group by busIdx";
+
+        return this.jdbcTemplate.query(getDataCheckQuery,
+                (rs, rowNum) -> new GetDataCheck(
+                        rs.getInt("buIdx"),
+                        rs.getString("dayData"),
+                        rs.getString("monthData"))
         );
     }
 
