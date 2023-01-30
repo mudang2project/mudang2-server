@@ -7,22 +7,22 @@ import com.demo.mudang2.src.admin.model.GetPower;
 import com.demo.mudang2.src.admin.model.GetRecentData;
 import com.demo.mudang2.src.admin.model.GetRecentGps;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 import static com.demo.mudang2.config.BaseResponseStatus.GET_DATA_CHECK_FAILED;
-import static com.demo.mudang2.config.BaseResponseStatus.GET_POWER_FAILED;
 
 
-@RestController
-@RequestMapping("/admins")
+@Controller
+@RequestMapping("/admins/*")
 public class AdminController {
     @Autowired
     private final AdminProvider adminProvider;
     @Autowired
     private final AdminService adminService;
-
     public AdminController(AdminProvider adminProvider, AdminService adminService) {
         this.adminProvider = adminProvider;
         this.adminService = adminService;
@@ -83,6 +83,13 @@ public class AdminController {
         return getDataCheckRes;
 
 
+    }
+
+    @RequestMapping(value = "/usage")
+    public String getData(Model model) throws BaseException {
+
+        model.addAttribute("dataList",getDataCheck());
+        return "charts";
     }
 
     //데이터 사용량 response 무
