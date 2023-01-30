@@ -6,7 +6,6 @@ import com.demo.mudang2.src.admin.model.GetDataCheck;
 import com.demo.mudang2.src.admin.model.GetPower;
 import com.demo.mudang2.src.admin.model.GetRecentData;
 import com.demo.mudang2.src.admin.model.GetRecentGps;
-import com.demo.mudang2.src.camera.model.GetHeadCount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +19,7 @@ public class AdminProvider {
 
     private final AdminDao adminDao;
 
-    @Autowired //readme 참고
+    @Autowired
     public AdminProvider(AdminDao adminDao) {
         this.adminDao = adminDao;
     }

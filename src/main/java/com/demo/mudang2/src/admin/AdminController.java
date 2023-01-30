@@ -31,23 +31,17 @@ public class AdminController {
     //디바이스 onoff 조회
     @ResponseBody
     @GetMapping("/power")
-    public BaseResponse<List<GetPower>> getPower() {
-        try {
-            List<GetPower> getPowerRes = adminProvider.getPower();
+    public List<GetPower> getPower() throws BaseException {
 
-            if (getPowerRes == null) {
-                return new BaseResponse<>(GET_POWER_FAILED);
+        List<GetPower> getPowerRes = adminProvider.getPower();
+
+        for(int i=0; i < getPowerRes.size(); i++) {
+            Long interval = getPowerRes.get(i).getInterval();
+            if(interval < 600) {
+                getPowerRes.get(i).setStatus("on");
             }
-            for(int i=0; i < getPowerRes.size(); i++) {
-                Long interval = getPowerRes.get(i).getInterval();
-                if(interval < 600) {
-                    getPowerRes.get(i).setStatus("on");
-                }
-            }
-            return new BaseResponse<>(getPowerRes);
-        } catch (BaseException exception) {
-            return new BaseResponse<>((exception.getStatus()));
         }
+            return getPowerRes;
     }
 
     //최근 데이터 조회
@@ -83,18 +77,12 @@ public class AdminController {
     //데이터 사용량 확인 조회
     @ResponseBody
     @GetMapping("/data")
-    public BaseResponse<List<GetDataCheck>> getDataCheck() {
-        try{
-            List<GetDataCheck> getDataCheckRes = adminProvider.getDataCheck();
+    public List<GetDataCheck> getDataCheck() throws BaseException {
+        List<GetDataCheck> getDataCheckRes = adminProvider.getDataCheck();
 
-            if (getDataCheckRes == null) {
-                return new BaseResponse<>(GET_DATA_CHECK_FAILED);
-            }
-            return new BaseResponse<>(getDataCheckRes);
+        return getDataCheckRes;
 
-        }catch (BaseException exception) {
-            return new BaseResponse<>((exception.getStatus()));
-        }
+
     }
 
     //데이터 사용량 response 무
