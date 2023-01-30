@@ -34,16 +34,6 @@ public class AdminProvider {
         }
     }
 
-    //최근 데이터 조회
-    public GetRecentData getRecentData() throws BaseException {
-        try {
-            GetRecentData getRecentDataRes = adminDao.getRecentData();
-            return getRecentDataRes;
-        } catch (Exception exception) {
-            throw new BaseException(DATABASE_ERROR);
-        }
-    }
-
     //gps 최근 데이터 조회
     public List<GetRecentGps> getRecentGps() throws BaseException {
         try {

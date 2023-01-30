@@ -41,18 +41,6 @@ public class AdminController {
             return getPowerRes;
     }
 
-    //최근 데이터 조회
-    @ResponseBody
-    @GetMapping("/recent")
-    public BaseResponse<GetRecentData> getRecentData() {
-        try{
-            GetRecentData getRecentDataRes = adminProvider.getRecentData();
-            return new BaseResponse<>(getRecentDataRes);
-
-        }catch (BaseException exception) {
-            return new BaseResponse<>((exception.getStatus()));
-        }
-    }
 
     //gps 최근 데이터 조회
     @ResponseBody
