@@ -24,7 +24,7 @@ public class AdminDao {
                 "from gps_device where (busIdx, createdAt) in (select busIdx, max(createdAt) as time from gps_device group by busIdx)\n" +
                 "order by createdAt desc) as t group by t.busIdx)\n" +
                 "UNION\n" +
-                "(select idx, timestampdiff(second, createdAt, NOW()) as 'interval'\n" +
+                "(select if(idx, 6, 6), timestampdiff(second, createdAt, NOW()) as 'interval'\n" +
                 " from camera_device\n" +
                 " order by createdAt DESC\n" +
                 " limit 1)";
