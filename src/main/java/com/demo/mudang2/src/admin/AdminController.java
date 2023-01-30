@@ -4,6 +4,7 @@ import com.demo.mudang2.config.BaseException;
 import com.demo.mudang2.config.BaseResponse;
 import com.demo.mudang2.src.admin.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,7 +13,7 @@ import static com.demo.mudang2.config.BaseResponseStatus.GET_DATA_CHECK_FAILED;
 import static com.demo.mudang2.config.BaseResponseStatus.GET_POWER_FAILED;
 
 
-@RestController
+@Controller
 @RequestMapping("/admins")
 public class AdminController {
     @Autowired
