@@ -5,16 +5,16 @@ import com.demo.mudang2.config.BaseResponse;
 import com.demo.mudang2.src.admin.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 import static com.demo.mudang2.config.BaseResponseStatus.GET_DATA_CHECK_FAILED;
-import static com.demo.mudang2.config.BaseResponseStatus.GET_POWER_FAILED;
 
 
 @Controller
-@RequestMapping("/admins")
+@RequestMapping("/admins/*")
 public class AdminController {
     @Autowired
     private final AdminProvider adminProvider;
@@ -70,14 +70,11 @@ public class AdminController {
     }
 
     //데이터 사용량 확인 조회
-    @ResponseBody
-    @GetMapping("/data")
-    public List<GetDataCheck> getDataCheck() throws BaseException {
-        List<GetDataCheck> getDataCheckRes = adminProvider.getDataCheck();
+    @RequestMapping(value = "/usage")
+    public String getData(Model model) throws BaseException {
 
-        return getDataCheckRes;
-
-
+        model.addAttribute("dataList", adminProvider.getDataCheck());
+        return "charts";
     }
 
     //데이터 사용량 response 무
@@ -87,7 +84,4 @@ public class AdminController {
         adminService.createDataCheck(busIdx, data);
 
     }
-
-
-
 }
