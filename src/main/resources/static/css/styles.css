@@ -7822,8 +7822,8 @@ textarea.form-control-lg {
 }
 
 .bg-primary {
-  --bs-bg-opacity: 1;
-  background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;
+  background: url("../assets/img/background.png") no-repeat;
+  background-size: cover;
 }
 
 .bg-secondary {
