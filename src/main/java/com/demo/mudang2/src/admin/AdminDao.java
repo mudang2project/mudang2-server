@@ -34,6 +34,7 @@ public class AdminDao {
                         rs.getInt("idx"),
                         rs.getLong("interval"), "off")
         );
+
     }
 
     //최근 데이터 조회 - 무당이 디바이스

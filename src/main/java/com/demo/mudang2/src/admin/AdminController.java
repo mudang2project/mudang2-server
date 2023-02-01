@@ -39,7 +39,26 @@ public class AdminController {
                 getPowerRes.get(i).setStatus("on");
             }
         }
-            return getPowerRes;
+
+//        System.out.println(getPowerRes.get(0).getStatus());
+
+        return getPowerRes;
+    }
+
+    //버스powerStatus 확인 조회
+    @RequestMapping(value = "/power/status")
+    public String getPowerStatus(Model model) throws BaseException {
+
+        List<GetPower> getPowerRes = adminProvider.getPower();
+        for(int i=0; i < getPowerRes.size(); i++) {
+            Long interval = getPowerRes.get(i).getInterval();
+            if(interval < 600) {
+                getPowerRes.get(i).setStatus("on");
+            }
+        }
+
+        model.addAttribute("getPowerResStatus", getPowerRes);
+        return "index";
     }
 
 
