@@ -30,7 +30,6 @@ public class AdminController {
     @ResponseBody
     @GetMapping("/power")
     public List<GetPower> getPower() throws BaseException {
-
         List<GetPower> getPowerRes = adminProvider.getPower();
 
         for(int i=0; i < getPowerRes.size(); i++) {
@@ -42,6 +41,19 @@ public class AdminController {
             return getPowerRes;
     }
 
+    //버스powerStatus 확인 조회
+    @RequestMapping(value = "/power/status")
+    public String getPowerStatus(Model model) throws BaseException {
+        List<GetPower> getPowerRes = adminProvider.getPower();
+        for(int i=0; i < getPowerRes.size(); i++) {
+            Long interval = getPowerRes.get(i).getInterval();
+            if(interval < 600) {
+                getPowerRes.get(i).setStatus("on");
+            }
+        }
+        model.addAttribute("getPowerResStatus", getPowerRes);
+        return "main";
+    }
 
     //gps 최근 데이터 조회
     @ResponseBody
@@ -82,6 +94,5 @@ public class AdminController {
     @PostMapping("/data/{busIdx}/{data}")
     public void insertDataCheck(@PathVariable("busIdx") int busIdx, @PathVariable("data") Long data) throws BaseException {
         adminService.createDataCheck(busIdx, data);
-
     }
 }
