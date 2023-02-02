@@ -102,7 +102,10 @@
                                                         <h5 class="card-title" th:if="${powerStatus.idx}==6">
                                                             정류장 Device
                                                         </h5>
-                                                        <h5 class="card-title" th:unless="${powerStatus.idx}==6">
+                                                        <h5 class="card-title" th:if="${powerStatus.idx}==5">
+                                                            버스 무당이
+                                                        </h5>
+                                                        <h5 class="card-title" th:if="${powerStatus.idx}<5">
                                                             <span th:text="|${powerStatus.idx+1}번 무당이|"></span>
                                                         </h5>
                                                         <p class="card-text">View Details</p>
@@ -119,7 +122,11 @@
                                                         <h5 class="card-title" th:if="${powerStatus.idx}==6">
                                                             정류장 Device
                                                         </h5>
-                                                        <h5 class="card-title" th:unless="${powerStatus.idx}==6">
+                                                        <h5 class="card-title" th:if="${powerStatus.idx}==5">
+                                                            버스 무당이
+                                                        </h5>
+
+                                                        <h5 class="card-title" th:if="${powerStatus.idx}<5">
                                                             <span th:text="|${powerStatus.idx+1}번 무당이|"></span>
                                                         </h5>
                                                         <p class="card-text">View Details</p>
@@ -163,7 +170,10 @@
                                                         <h5 class="card-title" th:if="${powerStatus.idx}==6">
                                                             정류장 Device
                                                         </h5>
-                                                        <h5 class="card-title" th:unless="${powerStatus.idx}==6">
+                                                        <h5 class="card-title" th:if="${powerStatus.idx}==5">
+                                                            버스 무당이
+                                                        </h5>
+                                                        <h5 class="card-title" th:if="${powerStatus.idx}<5">
                                                             <span th:text="|${powerStatus.idx+1}번 무당이|"></span>
                                                         </h5>
                                                         <p class="card-text">View Details</p>
