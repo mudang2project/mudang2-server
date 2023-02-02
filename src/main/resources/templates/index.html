@@ -86,7 +86,7 @@
                             <!--표시되는 부분-->
                             <div class="card-body">
                                 <div class="container">
-                                    <!--1-1-->
+                                    <!--구분-->
                                         <div class="row">
                                             <th:block th:each="powerStatus : ${getPowerResStatus}">
                                                 <!--status가 on인 것만 표시-->
@@ -127,8 +127,6 @@
                                                     </div>
                                                     <br>
                                                 </div>
-                                            <!--on인 박스 하나 만들고 카운트+1-->
-<!--                                            cnt++-->
                                             </th:block>
                                         </div>
                                 </div>
@@ -138,7 +136,6 @@
 
                     <!--전원 꺼짐 박스-->
                     <div class="col-lg-6 mb-4">
-                        <!-- Illustrations -->
                         <!-- Project Card Example -->
                         <div class="card shadow mb-4">
                             <div align="center" class="card-header py-3">
@@ -150,7 +147,7 @@
                                     <div class="container">
                                             <div class="row">
                                                 <th:block th:each="powerStatus : ${getPowerResStatus}">
-                                                    
+
                                                 <!--status가 off인 것만 표시-->
                                                 <div class="col-4" th:if="${powerStatus.status}=='off'">
                                                     <div class="card text-white bg-secondary">
