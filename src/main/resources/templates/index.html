@@ -150,7 +150,7 @@
                                     <div class="container">
                                             <div class="row">
                                                 <th:block th:each="powerStatus : ${getPowerResStatus}">
-
+                                                    
                                                 <!--status가 off인 것만 표시-->
                                                 <div class="col-4" th:if="${powerStatus.status}=='off'">
                                                     <div class="card text-white bg-secondary">
