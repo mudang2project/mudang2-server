@@ -78,6 +78,7 @@
                             <div class="card-body align-items-center justify-content-between">
                                 <div class="row small text-black stretched-link" th:text="|월별 누적 사용량 : ${data.monthData} Byte|"></div>
                                 <div class="row small text-black stretched-link" th:text="|일별 사용량 : ${data.dayData} Byte|"></div>
+                                <div class="row small text-black stretched-link" th:text="|총 사용량 : ${(data.monthData/1048576)}.${(data.monthData*10/1048576)-(data.monthData/1048576)*10}%|"></div>
                             </div>
                         </div>
                     </div>

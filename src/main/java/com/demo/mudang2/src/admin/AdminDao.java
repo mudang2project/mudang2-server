@@ -85,8 +85,8 @@ public class AdminDao {
     // 데이터 사용량 확인 조회
     public List<GetDataCheck> getDataCheck() {
         String getDataCheckQuery = "select busIdx, SUM(if(date(createdAt) = date(NOW()), data, 0)) as 'dayData',\n" +
-                "       SUM(if((date_format(createdAt, '%m') = date_format(NOW(), '%m') and date_format(NOW(), '%d') > 12 and date_format(createdAt, '%d') > 12)\n" +
-                "    or (date_format(createdAt, '%m') <= date_format(NOW(), '%m') and date_format(createdAt, '%d') > 13), data, 'null')) as 'monthData'\n" +
+                "SUM(if((date_format(createdAt, '%m') = date_format(NOW(), '%m') and date_format(createdAt, '%d') < 12)\n" +
+                "or (date_format(createdAt, '%m') <= date_format(NOW(), '%m') and date_format(createdAt, '%d') > 13), data, 'null')) as 'monthData'\n" +
                 "from data\n" +
                 "group by busIdx";
 
@@ -94,7 +94,7 @@ public class AdminDao {
                 (rs, rowNum) -> new GetDataCheck(
                         rs.getInt("busIdx"),
                         rs.getString("dayData"),
-                        rs.getString("monthData"))
+                        Integer.parseInt(rs.getString("monthData")))
         );
     }
 

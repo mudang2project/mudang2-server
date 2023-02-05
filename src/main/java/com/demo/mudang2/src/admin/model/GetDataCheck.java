@@ -11,5 +11,9 @@ import lombok.Setter;
 public class GetDataCheck {
     private int busIdx;
     private String dayData;
-    private String monthData;
+    private int monthData;
+
+    public String toString(){
+        return "busIdx : "+busIdx+"    dayData : "+ dayData + "     monthData :" + monthData ;
+    }
 }
