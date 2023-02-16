@@ -32,14 +32,14 @@ body {
 } */
 
 .list:nth-child(2){
-    background-color: #4e5a56;
+    background-color: #a1d4f0;
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
 }
 
 .list:nth-child(3){
-    background-color: #9d949e;  //페이지색깔 -> 보라색
+    background-color: #a1d4f0;
     background-size: cover;
     background-attachment: fixed;
     background-position: center;

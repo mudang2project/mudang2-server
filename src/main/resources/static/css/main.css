@@ -1,5 +1,5 @@
 h3 {
-    font-family: 'Pretendard-Thin';
+    font-family: "Yuppy SC";
     color: #ffffff;
     text-align: center;
     font-style: italic;
@@ -16,11 +16,13 @@ h3 {
 
 .menu li {
     margin: 35px;
+    font-family: "Yuppy SC";
 }
 
 .menu li a {
     color: rgb(255, 255, 255);
     text-decoration: none;
+    font-family: "Yuppy SC";
 }
 
 .menu ul {
@@ -28,7 +30,7 @@ h3 {
 }
 
 .menu {
-    font-size: 25px;
+    font-size: 40px;
     font-style: italic;
     align-items: center;
     text-align: center;
@@ -50,6 +52,7 @@ h3 {
 }
 
 .profile {
+    font-family: "Yuppy SC";
     border-radius: 30%;
     display: inline-block;
     padding: 0.5rem;
