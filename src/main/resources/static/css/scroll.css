@@ -18,6 +18,11 @@ body {
     scroll-snap-type: inline mandatory;
 }
 
+#container img {
+    max-width: 100%;
+    height: auto !important;
+}
+
 .list{
     width:100%;
     height:100vh;
@@ -49,14 +54,14 @@ body {
 }
 
 .list:nth-child(4){
-    background-color: #e0d8cc;
+    background-color: #a1d4f0;
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
 }
 
 .list:nth-child(5){
-    background-color: #8a6e8a;
+    background-color: #a1d4f0;
     background-size: cover;
     background-attachment: fixed;
     background-position: center;

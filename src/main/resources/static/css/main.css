@@ -8,6 +8,25 @@ h3 {
     font-size: 20px;
 }
 
+
+h4 {
+
+    display: block;
+
+    font-size: 1em;
+
+    margin-top: 1.33em;
+
+    margin-bottom: 0.5em;
+
+    margin-left: 0;
+
+    margin-right: 0;
+
+    font-weight: bold;
+
+}
+
 /* 상단바 */
 
 .menu * {
@@ -15,7 +34,7 @@ h3 {
 }
 
 .menu li {
-    margin: 35px;
+    margin: 20px;
     font-family: "Yuppy SC";
 }
 
@@ -47,10 +66,11 @@ h3 {
 
 .one {
     background-size: cover;
-    text-align: center;
+    /*text-align: center;*/
     padding-top: 0px;
     padding-bottom: 130px;
 }
+
 
 .profile {
     font-family: "Yuppy SC";
@@ -58,11 +78,12 @@ h3 {
     margin: 15px;
     display: inline-block;
     padding: 0.5rem;
-    margin-top: 20px;
+    margin-top: 10px;
     border: 1px solid gray;
     background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid rgb(255, 255, 255, 0.5);
 }
+
 
 .profile img {
     border-radius: 30%;
