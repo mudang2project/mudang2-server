@@ -2,6 +2,7 @@
 
 body {
     overflow: hidden;
+    height: auto;
     font-family: 'Roboto Slab', serif;
 }
 
