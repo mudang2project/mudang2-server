@@ -1,19 +1,21 @@
 /* 이 부분이 없으면 스크롤 바 두 개가 생성된다 */
 
 body {
+    background-color: #a1d4f0;
     overflow: hidden;
-    height: auto;
     font-family: 'Roboto Slab', serif;
+
 }
 
 /* Scroll down */
 
 #container{
+    background-color: #a1d4f0;
     width:100%;
     height:100vh;
     overflow: auto;
     scroll-behavior: smooth;
-    scroll-snap-type: y mandatory;
+    scroll-snap-type: inline mandatory;
 }
 
 .list{

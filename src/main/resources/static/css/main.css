@@ -20,7 +20,7 @@ h3 {
 }
 
 .menu li a {
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     text-decoration: none;
     font-family: "Yuppy SC";
 }
@@ -35,7 +35,7 @@ h3 {
     align-items: center;
     text-align: center;
     padding-top: 20px;
-    position: fixed;
+    position: static;
     top: 0;
     left: 0;
     right: 0;
@@ -48,7 +48,7 @@ h3 {
 .one {
     background-size: cover;
     text-align: center;
-    padding-top: 180px;
+    padding-top: 0px;
     padding-bottom: 130px;
 }
 
