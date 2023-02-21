@@ -18,10 +18,17 @@ public class GpsProvider {
     public GpsProvider(GpsDao gpsDao) { this.gpsDao = gpsDao; }
 
     public List<GetLocation> getLocation() throws BaseException {
-
         try {
-            List<GetLocation> getLocationRes = gpsDao.getLocation();
-            return getLocationRes;
+            int cnt = gpsDao.getCountGps();
+            if(cnt == 0) {
+                int newSql = gpsDao.insertLocation();
+                List<GetLocation> getLocationRes = gpsDao.getLocation();
+                return getLocationRes;
+            }
+            else {
+                List<GetLocation> getLocationRes = gpsDao.getLocation();
+                return getLocationRes;
+            }
         } catch (Exception exception) {
             throw new BaseException(DATABASE_ERROR);
         }

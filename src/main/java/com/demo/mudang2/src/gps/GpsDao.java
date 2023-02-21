@@ -49,4 +49,17 @@ public class GpsDao {
         Object[] createLocationParams = new Object[]{busIdx, lat, lon}; // 동적 쿼리의 ?부분에 주입될 값
         return this.jdbcTemplate.update(createLocationQuery, createLocationParams);
     }
+
+    public int insertLocation() {
+        String insertLocationQuery = "insert into gps_device (busIdx, lat, lon) values (0,'null','null')," +
+                "(1,'null','null'),(2,'null','null'),(3,'null','null'),(4,'null','null'),(5,'null','null')";
+        Object[] insertLocationParams = new Object[]{};
+        return this.jdbcTemplate.update(insertLocationQuery, insertLocationParams);
+    }
+
+    public int getCountGps() {
+        Integer count = jdbcTemplate.queryForObject(
+                "SELECT COUNT(busIdx) from gps_device", Integer.class);
+        return count;
+    }
 }
