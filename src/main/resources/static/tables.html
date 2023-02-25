@@ -14,6 +14,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 
+    <script>
+        //세션값 없으면 리다이렉트시킴
+        var sessionValue = sessionStorage.getItem("mudangSession"); //mudang2
+        if (sessionValue == undefined) {
+            location.replace('http://210.102.178.97/login.html');
+        }
+    </script>
 </head>
 <body class="sb-nav-fixed">
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
