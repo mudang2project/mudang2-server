@@ -10,6 +10,14 @@
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet"/>
     <link href="/css/styles.css" rel="stylesheet"/>
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+
+    <script>
+        //세션값 없으면 리다이렉트시킴
+        var sessionValue = sessionStorage.getItem("mudangSession"); //mudang2
+        if (sessionValue == undefined) {
+            location.replace('http://210.102.178.97/login.html');
+        }
+    </script>
 </head>
 <body class="sb-nav-fixed">
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
