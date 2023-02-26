@@ -47,4 +47,16 @@ public class CameraDao {
         return this.jdbcTemplate.update(createHeadCountQuery, createHeadCountParams);
     }
 
+    public int insertHeadCount() {
+        String insertHeadCountQuery = "insert into camera_device (headCount) values (0)";
+        Object[] insertHeadCountParams = new Object[]{};
+        return this.jdbcTemplate.update(insertHeadCountQuery, insertHeadCountParams);
+    }
+
+    public int getCountCamera() {
+        Integer count = jdbcTemplate.queryForObject(
+                "SELECT COUNT(idx) from camera_device", Integer.class);
+        return count;
+    }
+
 }
