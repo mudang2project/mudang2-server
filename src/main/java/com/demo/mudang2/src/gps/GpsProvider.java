@@ -2,9 +2,15 @@ package com.demo.mudang2.src.gps;
 
 import com.demo.mudang2.config.BaseException;
 import com.demo.mudang2.src.gps.model.GetLocation;
+import org.python.core.PyFunction;
+import org.python.core.PyInteger;
+import org.python.core.PyObject;
+import org.python.core.PyString;
+import org.python.util.PythonInterpreter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.demo.mudang2.config.BaseResponseStatus.DATABASE_ERROR;
@@ -27,6 +33,28 @@ public class GpsProvider {
             }
             else {
                 List<GetLocation> getLocationRes = gpsDao.getLocation();
+                ////////////////////////////////
+
+
+                PythonInterpreter interpreter = new PythonInterpreter();
+                interpreter.execfile("scr/main/python/main.py");
+                PyFunction pyFunction = interpreter.get("main",PyFunction.class);
+
+                for (GetLocation getLocation : getLocationRes){
+                    //int idx = getLocation.getBusIdx();
+                    String lat = getLocation.getLat();
+                    String lon = getLocation.getLon();
+
+                    PyObject pyobj = pyFunction.__call__(new PyString(lat),new PyString(lon));
+                    System.out.println(pyobj.toString());
+                    List list = (List) pyobj.__tojava__(List.class);
+
+                    getLocation.setLat((String) list.get(0));
+                    getLocation.setLon((String) list.get(1));
+                }
+                 ///////////////////////////////
+
+
                 return getLocationRes;
             }
         } catch (Exception exception) {

@@ -41,10 +41,11 @@ def run_model(model, lat, lon):
 def min_correction(lat, lon):
     road = [[37.4519, 127.1312], [37.4526, 127.1307], [37.4526, 127.1305], [37.4525, 127.1300], [37.4521, 127.1295],
             [37.4517, 127.1275], [37.4506, 127.1275], [37.450453, 127.127903], [37.449727, 127.127760],
-            [37.449642, 127.128015], [37.450453, 127.127903], [37.4499, 127.1299], [37.4509, 127.1303],
-            [37.4512, 127.1308], [37.4522, 127.1314], [37.4524, 127.1319], [37.4531, 127.1336], [37.4535, 127.1342],
-            [37.4536, 127.1345], [37.4537, 127.1347], [37.4541, 127.1348], [37.4555, 127.1347], [37.455883, 127.134630],
-            [37.455713, 127.134075], [37.455227, 127.133994], [37.455169, 127.134695], [37.455446, 127.134335]]
+            [37.449642, 127.128015], [37.450453, 127.127903], [37.450058, 127.129375], [37.450934, 127.129774],
+            [37.450058, 127.129375], [37.4499, 127.1299], [37.4509, 127.1303], [37.4512, 127.1308], [37.4522, 127.1314],
+            [37.4524, 127.1319], [37.4531, 127.1336], [37.4535, 127.1342], [37.4536, 127.1345], [37.4537, 127.1347],
+            [37.4541, 127.1348], [37.4555, 127.1347], [37.455883, 127.134630], [37.455713, 127.134075],
+            [37.455227, 127.133994], [37.455169, 127.134695], [37.455446, 127.134335]]
 
     a = lat
     b = lon
@@ -82,21 +83,8 @@ def correction(x1, y1, x2, y2, a, b):
 
 def main(lat, lon):
     model = call_model()
-    boolean = run_model(model, lat, lon)
+    boolean = run_model(model, float(lat), float(lon))
     if boolean == 'T':
-        return str(lat + ' ' + lon)
+        return [lat,lon]
     elif boolean == 'F':
-        return min_correction(boolean, lat, lon)
-
-# interpreter = new PythonInterpreter();
-# interpreter.execfile("scr/main/python/main.py");
-# interpreter.exec()
-# PyFunction pyFunction = interpreter.get("main",PyFunction.class);
-#
-# int lat = 10;
-# int lon = 10;
-#
-# PyObjeect pyobj = pyFunction.__call__(new PyInteger(a),new PyInteger(b));
-# System.out.println(pyobj.toString());
-#
-# return pyobj.toString();
+        return [min_correction(boolean, lat, lon)]
