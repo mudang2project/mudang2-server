@@ -60,7 +60,7 @@ public class GpsController {
 
     @ResponseBody
     @PostMapping("/location/{busIdx}/{lat}/{lon}")
-    public void insertLocation(@PathVariable("busIdx") int busIdx, @PathVariable("lat") String lat, @PathVariable("lon") String lon) throws BaseException {
+    public void insertLocation(@PathVariable("busIdx") int busIdx, @PathVariable("lat") String lat, @PathVariable("lon") String lon) throws BaseException{
             gpsService.createLocation(busIdx, lat, lon);
 
     }

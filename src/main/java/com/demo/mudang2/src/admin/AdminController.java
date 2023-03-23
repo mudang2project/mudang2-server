@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import static com.demo.mudang2.config.BaseResponseStatus.GET_DATA_CHECK_FAILED;
@@ -93,6 +95,8 @@ public class AdminController {
     @ResponseBody
     @PostMapping("/data/{busIdx}/{data}")
     public void insertDataCheck(@PathVariable("busIdx") int busIdx, @PathVariable("data") Long data) throws BaseException {
-        adminService.createDataCheck(busIdx, data);
+        Long beforeData = adminProvider.compareDataCheck(busIdx);
+        Long newData = data - beforeData;
+        adminService.createDataCheck(busIdx, newData);
     }
 }
