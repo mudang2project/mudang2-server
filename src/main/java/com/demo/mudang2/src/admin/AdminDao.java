@@ -105,6 +105,17 @@ public class AdminDao {
         return this.jdbcTemplate.update(createDataCheckQuery, createDataCheckParams);
     }
 
+    public Long compareDataCheck(int busIdx) {
+        Long beforeData = jdbcTemplate.queryForObject(
+                "select data\n" +
+                        "from data\n" +
+                        "where busIdx = ? and date(createdAt) = date(NOW())\n" +
+                        "and date_format(date_add(createdAt, INTERVAL 1 HOUR), '%Y-%m-%d %H') = date_format(NOW(), '%Y-%m-%d %H')\n" +
+                        "order by createdAt desc\n" +
+                        "limit 1;", Long.class, busIdx);
+        return beforeData;
+    }
+
 
 }
 
