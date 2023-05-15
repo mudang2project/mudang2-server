@@ -37,6 +37,7 @@ public class AdminController {
     }
 
 
+
     /**
      * 디바이스 on/off 조회
      */
