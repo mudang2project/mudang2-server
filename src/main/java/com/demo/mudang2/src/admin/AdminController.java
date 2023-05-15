@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -31,9 +32,9 @@ public class AdminController {
      * 비밀번호 변경
      */
     @PatchMapping("/password")
-    public String changePassword(@RequestBody String password) throws BaseException {
+    public void changePassword(@RequestBody Map<String, Object> requestBody) throws BaseException {
+        String password = (String) requestBody.get("password");
         String newPassword = adminService.changePassword(password);
-        return newPassword;
     }
 
 
