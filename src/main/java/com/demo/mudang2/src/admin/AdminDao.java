@@ -32,7 +32,7 @@ public class AdminDao {
     /**
      * 비밀번호 변경
      */
-    public int updatePassword(PasswordInfo password) {
+    public int updatePassword(String password) {
         String updatePasswordQuery = "update set user password = ? where idx = 1";
         Object[] updatePasswordParams = new Object[]{password}; // 동적 쿼리의 ?부분에 주입될 값
 

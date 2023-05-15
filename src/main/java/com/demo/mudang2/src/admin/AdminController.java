@@ -13,7 +13,7 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/admins/*")
-@CrossOrigin(origins = "", allowedHeaders = "")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class AdminController {
     private final AdminProvider adminProvider;
     private final AdminService adminService;
@@ -31,7 +31,7 @@ public class AdminController {
      * 비밀번호 변경
      */
     @PatchMapping("/password")
-    public String changePassword(@RequestBody PasswordInfo password) throws BaseException {
+    public String changePassword(@RequestBody String password) throws BaseException {
         String newPassword = adminService.changePassword(password);
         return newPassword;
     }
