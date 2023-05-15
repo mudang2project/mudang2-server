@@ -16,7 +16,7 @@ public class AdminService {
     /**
      * 비밀번호 변경 - user table에 update
      */
-    public String changePassword(PasswordInfo password) throws BaseException {
+    public String changePassword(String password) throws BaseException {
         try {
             int newPassword = adminDao.updatePassword(password);
             if(newPassword == 0) {
