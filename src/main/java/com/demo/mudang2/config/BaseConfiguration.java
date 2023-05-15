@@ -10,7 +10,7 @@ public class BaseConfiguration implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/admins/**")
                 .allowedOrigins("*")
-                .allowedMethods("GET", "PATCH")
+                .allowedMethods("GET", "PATCH", "POST")
                 .allowedHeaders("*");
     }
 }

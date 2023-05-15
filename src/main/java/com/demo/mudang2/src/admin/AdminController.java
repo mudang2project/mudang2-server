@@ -3,6 +3,7 @@ package com.demo.mudang2.src.admin;
 import com.demo.mudang2.config.BaseException;
 import com.demo.mudang2.src.admin.model.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,10 +24,9 @@ public class AdminController {
      * 로그인
      */
     @GetMapping("/login")
-    public String loginAdmin() throws BaseException {
+    public ResponseEntity<String> loginAdmin() throws BaseException {
         String password = adminProvider.getPassword();
-        System.out.println(password);
-        return password;
+        return ResponseEntity.ok(password);
     }
 
     /**

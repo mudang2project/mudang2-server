@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="ko">
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -60,57 +60,30 @@
     </body>
 </html>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     function login() {
-        var pw = document.querySelector('#inputPassword');
+        var enteredPassword = document.getElementById("inputPassword").value;
 
-        if(pw.value == "") {
-            alert("로그인할 수 없습니다.")
-        }
-        else {
-            // API에서 비밀번호 확인
-            fetch("http://localhost/admins/login", {
-                method: "GET",
-                headers: {
-                    'Content-Type': 'application/json'
+        // API 호출
+        $.ajax({
+            url: "/admins/login",
+            method: "GET",
+            success: function(response) {
+                var serverPassword = response;
+
+                if (enteredPassword === serverPassword) {
+                    let sessionData = Math.random().toString(36).substring(2, 12);
+                    sessionStorage.setItem("mudangSession", sessionData);
+
+                    window.location.href = "/admins/power/status";
+                } else {
+                    alert("패스워드가 일치하지 않습니다.");
                 }
-            })
-                .then(response => response.toString())
-                .then(data => {
-                    if (pw.value === data) {
-                        console.log(data)
-                        // 세션 생성
-                        let sessionData = Math.random().toString(36).substring(2, 12);
-                        sessionStorage.setItem("mudangSession", sessionData);
-
-                        location.href = "admins/power/status";
-                    } else {
-                        alert("비밀번호가 틀렸습니다.");
-                    }
-                })
-                .catch(function(error) {
-                    alert(error.message);
-                });
-        }
-
-
-
-        // else if(pw.value == "mudang2") {
-        //
-        //     //세션 생성
-        //     let sessionData = Math.random().toString(36).substring(2, 12);
-        //     //생성한 세션을 저장
-        //     sessionStorage.setItem("mudangSession", sessionData);
-        //     // sessionStorage.getItem("mudangSession"); //mudang2
-        //
-        //     // alert(sessionData);
-        //
-        //     location.href = "admins/power/status";
-        // }
-        // else {
-        //     alert("비밀번호가 틀렸습니다.")
-        // }
+            },
+            error: function() {
+                alert("서버에서 패스워드를 가져오는데 실패했습니다.");
+            }
+        });
     }
-
-
 </script>
