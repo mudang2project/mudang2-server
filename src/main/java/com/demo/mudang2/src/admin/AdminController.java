@@ -37,7 +37,6 @@ public class AdminController {
         String newPassword = adminService.changePassword(password);
     }
 
-
     /**
      * 디바이스 on/off 조회
      */
