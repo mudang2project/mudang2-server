@@ -1,7 +1,6 @@
 package com.demo.mudang2.src.admin;
 
 import com.demo.mudang2.config.BaseException;
-import com.demo.mudang2.config.BaseResponse;
 import com.demo.mudang2.src.admin.model.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -14,6 +13,7 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/admins/*")
+@CrossOrigin(origins = "", allowedHeaders = "")
 public class AdminController {
     private final AdminProvider adminProvider;
     private final AdminService adminService;
