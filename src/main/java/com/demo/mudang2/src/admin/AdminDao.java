@@ -18,7 +18,31 @@ public class AdminDao {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    //디바이스 onoff 조회
+    /**
+     * 로그인 - 비밀번호 가져오기
+     */
+    public PasswordInfo getPassword() {
+        String getPasswordQuery = "select password from user order by idx desc limit 1";
+
+        return this.jdbcTemplate.queryForObject(getPasswordQuery, (rs, rowNum) -> new PasswordInfo(
+                rs.getString("password")
+        ));
+    }
+
+    /**
+     * 비밀번호 변경
+     */
+    public int updatePassword(PasswordInfo password) {
+        String updatePasswordQuery = "update set user password = ? where idx = 1";
+        Object[] updatePasswordParams = new Object[]{password}; // 동적 쿼리의 ?부분에 주입될 값
+
+        return this.jdbcTemplate.update(updatePasswordQuery, updatePasswordParams);
+    }
+
+
+    /**
+     * 디바이스 onoff 조회
+     */
     public List<GetPower> getPower() {
         String getPowerQuery = "(select t.busIdx as 'idx', t.interval from ( select busIdx, lat, lon, timestampdiff(second, createdAt, NOW()) as 'interval'\n" +
                 "from gps_device where (busIdx, createdAt) in (select busIdx, max(createdAt) as time from gps_device group by busIdx)\n" +
@@ -36,7 +60,9 @@ public class AdminDao {
         );
     }
 
-    //최근 데이터 조회 - 무당이 디바이스
+    /**
+     * 최근 데이터 조회 - 무당이 디바이스
+     */
     public List<GetRecentGps> getGpsList() {
         String getGpsQuery = "select busIdx,  lat, lon, createdAt,\n" +
                 "       case when timestampdiff(minute, t.createdAt, CURRENT_TIMESTAMP()) <= 0 then CONCAT(TIMESTAMPDIFF(second , createdAt , NOW()), '초 전')\n" +
@@ -62,7 +88,10 @@ public class AdminDao {
                         rs.getString("update"))
         );
     }
-    //최근 데이터 조회 - 정류장 디바이스
+
+    /**
+     * 최근 데이터 조회 - 정류장 디바이스
+     */
     public List<GetRecentCamera> getCameraList() {
         String getDataQuery = "select headCount, createdAt,\n" +
                 "       case when timestampdiff(minute, createdAt, CURRENT_TIMESTAMP()) <= 0 then CONCAT(TIMESTAMPDIFF(second , createdAt , NOW()), '초 전')\n" +
@@ -82,7 +111,10 @@ public class AdminDao {
         );
 
     }
-    // 데이터 사용량 확인 조회
+
+    /**
+     *  데이터 사용량 확인 조회
+     */
     public List<GetDataCheck> getDataCheck() {
         String getDataCheckQuery = "select busIdx, SUM(if(date(createdAt) = date(NOW()), data, 0)) as 'dayData',\n" +
                 "SUM(if((date_format(createdAt, '%m') = date_format(NOW(), '%m') and date_format(createdAt, '%d') < 12)\n" +
@@ -98,23 +130,15 @@ public class AdminDao {
         );
     }
 
-    //데이터 사용량 response 무
+    /**
+     * 데이터 사용량 response 무
+     */
     public int createDataCheck(int busIdx, Long data) {
         String createDataCheckQuery = "insert into data (busIdx, data) values (?,?)";
         Object[] createDataCheckParams = new Object[]{busIdx, data}; // 동적 쿼리의 ?부분에 주입될 값
         return this.jdbcTemplate.update(createDataCheckQuery, createDataCheckParams);
     }
 
-//    public Long compareDataCheck(int busIdx) {
-//        Long beforeData = jdbcTemplate.queryForObject(
-//                "select if(COUNT(data)=0, COUNT(data), data) as 'data'\n" +
-//                        "from data\n" +
-//                        "where busIdx = ? and date(createdAt) = date(NOW())\n" +
-//                        "and date_format(date_add(createdAt, INTERVAL 1 HOUR), '%Y-%m-%d %H') <= date_format(NOW(), '%Y-%m-%d %H')\n" +
-//                        "order by createdAt desc\n" +
-//                        "limit 1;", Long.class, busIdx);
-//        return beforeData;
-//    }
 
 
 }

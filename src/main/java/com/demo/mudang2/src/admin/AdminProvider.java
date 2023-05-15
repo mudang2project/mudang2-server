@@ -6,7 +6,7 @@ import com.demo.mudang2.src.admin.model.*;
 import com.demo.mudang2.src.admin.model.GetDataCheck;
 import com.demo.mudang2.src.admin.model.GetPower;
 import com.demo.mudang2.src.admin.model.GetRecentGps;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,16 +15,29 @@ import static com.demo.mudang2.config.BaseResponseStatus.DATABASE_ERROR;
 
 
 @Service
+@RequiredArgsConstructor
 public class AdminProvider {
 
     private final AdminDao adminDao;
 
-    @Autowired
-    public AdminProvider(AdminDao adminDao) {
-        this.adminDao = adminDao;
+    /**
+     * 로그인 - 비밀번호 가져오기
+     */
+
+    public PasswordInfo getPassword() throws BaseException {
+        try {
+            PasswordInfo password = adminDao.getPassword();
+            return password;
+        } catch (Exception exception) {
+            throw new BaseException(DATABASE_ERROR);
+        }
     }
 
-    //디바이스 onoff 조회
+
+    /**
+     * 디바이스 on/off 조회
+     */
+
     public List<GetPower> getPower() throws BaseException {
         try {
             List<GetPower> getPowerRes = adminDao.getPower();
@@ -34,7 +47,10 @@ public class AdminProvider {
         }
     }
 
-    //gps 최근 데이터 조회
+    /**
+     * gps 최근 데이터 조회
+     */
+
     public List<GetRecentGps> getRecentGps() throws BaseException {
         try {
             List<GetRecentGps> getRecentGpsRes = adminDao.getGpsList();
@@ -44,6 +60,9 @@ public class AdminProvider {
         }
     }
 
+    /**
+     * camera 최근 데이터 조회
+     */
     public List<GetRecentCamera> getRecentCamera() throws BaseException {
         try {
             List<GetRecentCamera> getRecentCameraRes = adminDao.getCameraList();
@@ -53,7 +72,9 @@ public class AdminProvider {
         }
     }
 
-    //데이터 사용량 확인 조회
+    /**
+     * 데이터 사용량 확인 조회
+     */
     public List<GetDataCheck> getDataCheck() throws BaseException {
         try {
             List<GetDataCheck> getDataCheckRes = adminDao.getDataCheck();
@@ -63,14 +84,5 @@ public class AdminProvider {
         }
     }
 
-//    public Long compareDataCheck(int busIdx) throws BaseException {
-//        try{
-//            Long beforeData = adminDao.compareDataCheck(busIdx);
-//            return beforeData;
-//
-//        }catch (Exception exception) {
-//            throw new BaseException(DATABASE_ERROR);
-//        }
-//    }
 
 }

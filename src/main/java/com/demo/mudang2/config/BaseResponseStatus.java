@@ -52,10 +52,12 @@ public enum BaseResponseStatus {
     SERVER_ERROR(false, 4001, "서버와의 연결에 실패하였습니다."),
 
     //[PATCH] /users/{userIdx}
-    MODIFY_FAIL_USERNAME(false,4014,"유저네임 수정 실패"),
+
 
     PASSWORD_ENCRYPTION_ERROR(false, 4011, "비밀번호 암호화에 실패하였습니다."),
     PASSWORD_DECRYPTION_ERROR(false, 4012, "비밀번호 복호화에 실패하였습니다."),
+    MODIFY_FAIL_PASSWORD(false, 4013, "비밀번호 변경에 실패하였습니다."),
+    MODIFY_FAIL_USERNAME(false,4014,"유저네임 수정 실패"),
 
     GET_LOCATION_FAILED(false, 4020, "위치 정보를 가져오는 것에 실패하였습니다."),
     GET_LOCATION_DELAY(false, 4022, "위치 정보가 업데이트 되지 않고 있습니다."),

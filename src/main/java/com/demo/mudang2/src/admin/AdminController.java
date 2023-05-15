@@ -4,16 +4,11 @@ import com.demo.mudang2.config.BaseException;
 import com.demo.mudang2.config.BaseResponse;
 import com.demo.mudang2.src.admin.model.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-
-import static com.demo.mudang2.config.BaseResponseStatus.GET_DATA_CHECK_FAILED;
 
 
 @Controller
@@ -22,6 +17,24 @@ import static com.demo.mudang2.config.BaseResponseStatus.GET_DATA_CHECK_FAILED;
 public class AdminController {
     private final AdminProvider adminProvider;
     private final AdminService adminService;
+
+    /**
+     * 로그인
+     */
+    @GetMapping("/login")
+    public PasswordInfo loginAdmin() throws BaseException {
+        PasswordInfo password = adminProvider.getPassword();
+        return password;
+    }
+
+    /**
+     * 비밀번호 변경
+     */
+    @PatchMapping("/password")
+    public String changePassword(@RequestBody PasswordInfo password) throws BaseException {
+        String newPassword = adminService.changePassword(password);
+        return newPassword;
+    }
 
 
     /**
