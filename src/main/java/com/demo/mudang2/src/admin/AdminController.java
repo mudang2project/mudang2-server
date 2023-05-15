@@ -3,6 +3,7 @@ package com.demo.mudang2.src.admin;
 import com.demo.mudang2.config.BaseException;
 import com.demo.mudang2.config.BaseResponse;
 import com.demo.mudang2.src.admin.model.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,19 +17,16 @@ import static com.demo.mudang2.config.BaseResponseStatus.GET_DATA_CHECK_FAILED;
 
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/admins/*")
 public class AdminController {
-    @Autowired
     private final AdminProvider adminProvider;
-    @Autowired
     private final AdminService adminService;
 
-    public AdminController(AdminProvider adminProvider, AdminService adminService) {
-        this.adminProvider = adminProvider;
-        this.adminService = adminService;
-    }
 
-    //디바이스 onoff 조회
+    /**
+     * 디바이스 on/off 조회
+     */
     @ResponseBody
     @GetMapping("/power")
     public List<GetPower> getPower() throws BaseException {
@@ -43,7 +41,9 @@ public class AdminController {
             return getPowerRes;
     }
 
-    //버스powerStatus 확인 조회
+    /**
+     * 버스powerStatus 확인 조회
+     */
     @RequestMapping(value = "/power/status")
     public String getPowerStatus(Model model) throws BaseException {
         List<GetPower> getPowerRes = adminProvider.getPower();
@@ -57,25 +57,19 @@ public class AdminController {
         return "main";
     }
 
-    //gps 최근 데이터 조회
+    /**
+     * gps 최근 데이터 조회
+     */
     @ResponseBody
     @GetMapping("/recent/gps")
     public List<GetRecentGps> getRecentGps() throws BaseException {
-//        try{
-//            List<GetRecentGps> getRecentGpsRes = adminProvider.getRecentGps();
-//
-//            if (getRecentGpsRes == null) {
-//                return new BaseResponse<>(GET_DATA_CHECK_FAILED);
-//            }
-//            return getRecentGpsRes;
-//
-//        }catch (BaseException exception) {
-//            return new BaseResponse<>((exception.getStatus()));
-//        }
         List<GetRecentGps> data = adminProvider.getRecentGps();
         return data;
     }
 
+    /**
+     * camera 최근 데이터 조회
+     */
     @ResponseBody
     @GetMapping("/recent/camera")
     public List<GetRecentCamera> getRecentCamera() throws BaseException {
@@ -83,20 +77,21 @@ public class AdminController {
         return data;
     }
 
-    //데이터 사용량 확인 조회
+    /**
+     * 데이터 사용량 확인 조회
+     */
     @RequestMapping(value = "/usage")
     public String getData(Model model) throws BaseException {
-
         model.addAttribute("dataList", adminProvider.getDataCheck());
         return "charts";
     }
 
-    //데이터 사용량 response 무
+    /**
+     * 데이터 사용량 response 무
+     */
     @ResponseBody
     @PostMapping("/data/{busIdx}/{data}")
     public void insertDataCheck(@PathVariable("busIdx") int busIdx, @PathVariable("data") Long data) throws BaseException {
-//        Long beforeData = adminProvider.compareDataCheck(busIdx);
-//        Long newData = data - beforeData;
         adminService.createDataCheck(busIdx, data);
     }
 

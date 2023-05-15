@@ -4,6 +4,7 @@ import com.demo.mudang2.config.BaseException;
 import com.demo.mudang2.config.BaseResponse;
 import com.demo.mudang2.src.gps.model.GetLocation;
 import com.demo.mudang2.src.gps.model.PostLocationRes;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,18 +13,12 @@ import java.util.List;
 import static com.demo.mudang2.config.BaseResponseStatus.GET_LOCATION_FAILED;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/gps")
 public class GpsController {
-    @Autowired
     private final GpsProvider gpsProvider;
-    @Autowired
     private final GpsService gpsService;
 
-    public GpsController(GpsProvider gpsProvider, GpsService gpsService) {
-        this.gpsProvider = gpsProvider;
-        this.gpsService = gpsService;
-
-    }
 
     @ResponseBody
     @GetMapping("/location")

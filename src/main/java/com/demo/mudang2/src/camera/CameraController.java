@@ -4,22 +4,18 @@ import com.demo.mudang2.config.BaseException;
 import com.demo.mudang2.config.BaseResponse;
 import com.demo.mudang2.src.camera.model.GetHeadCount;
 import com.demo.mudang2.src.camera.model.PostHeadCountRes;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/cameras")
 public class CameraController {
-    @Autowired
     private final CameraProvider cameraProvider;
-    @Autowired
     private final CameraService cameraService;
     
-    public CameraController(CameraProvider cameraProvider, CameraService cameraService) {
-        this.cameraProvider = cameraProvider;
-        this.cameraService = cameraService;
-    }
 
     @ResponseBody
     @GetMapping("/headcount")
