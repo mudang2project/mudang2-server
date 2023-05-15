@@ -14,7 +14,7 @@ public class AdminService {
     private final AdminDao adminDao;
 
     /**
-     * 비밀번호 변경 - user table에 insert
+     * 비밀번호 변경 - user table에 update
      */
     public String changePassword(PasswordInfo password) throws BaseException {
         try {
