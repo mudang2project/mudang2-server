@@ -95,8 +95,10 @@ public class AdminController {
     @ResponseBody
     @PostMapping("/data/{busIdx}/{data}")
     public void insertDataCheck(@PathVariable("busIdx") int busIdx, @PathVariable("data") Long data) throws BaseException {
-        Long beforeData = adminProvider.compareDataCheck(busIdx);
-        Long newData = data - beforeData;
-        adminService.createDataCheck(busIdx, newData);
+//        Long beforeData = adminProvider.compareDataCheck(busIdx);
+//        Long newData = data - beforeData;
+        adminService.createDataCheck(busIdx, data);
     }
+
+
 }

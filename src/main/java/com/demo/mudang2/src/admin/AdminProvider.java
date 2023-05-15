@@ -63,14 +63,14 @@ public class AdminProvider {
         }
     }
 
-    public Long compareDataCheck(int busIdx) throws BaseException {
-        try{
-            Long beforeData = adminDao.compareDataCheck(busIdx);
-            return beforeData;
-
-        }catch (Exception exception) {
-            throw new BaseException(DATABASE_ERROR);
-        }
-    }
+//    public Long compareDataCheck(int busIdx) throws BaseException {
+//        try{
+//            Long beforeData = adminDao.compareDataCheck(busIdx);
+//            return beforeData;
+//
+//        }catch (Exception exception) {
+//            throw new BaseException(DATABASE_ERROR);
+//        }
+//    }
 
 }

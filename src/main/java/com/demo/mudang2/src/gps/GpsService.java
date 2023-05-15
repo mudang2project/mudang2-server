@@ -1,7 +1,6 @@
 package com.demo.mudang2.src.gps;
 
 import com.demo.mudang2.config.BaseException;
-import com.demo.mudang2.src.gps.model.PostLocationRes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +36,6 @@ public class GpsService {
             int result = gpsDao.createLocation(busIdx, lat, lon);
             if(result == 0) {
                 throw new BaseException(INSERT_FAIL_LOCATION);
-
             }
 
         }catch (Exception exception) {

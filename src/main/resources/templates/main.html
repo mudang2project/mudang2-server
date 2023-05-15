@@ -104,7 +104,7 @@
                                                 <!--초록색 조건문-->
                                                 <div th:if="${powerStatus.interval}<60" class="card text-white bg-success">
                                                     <div class="card-header">
-                                                        GPS
+                                                        Device
                                                     </div>
                                                     <div class="card-body">
                                                         <!--idx조건문-->
@@ -124,7 +124,7 @@
                                                 <!--빨간색 조건문-->
                                                 <div th:unless="${powerStatus.interval}<60" class="card text-white bg-danger">
                                                     <div class="card-header">
-                                                        GPS
+                                                        Device
                                                     </div>
                                                     <div class="card-body">
                                                         <!--idx조건문-->
