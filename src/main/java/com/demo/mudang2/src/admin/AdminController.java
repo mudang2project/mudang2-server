@@ -23,8 +23,9 @@ public class AdminController {
      * 로그인
      */
     @GetMapping("/login")
-    public PasswordInfo loginAdmin() throws BaseException {
-        PasswordInfo password = adminProvider.getPassword();
+    public String loginAdmin() throws BaseException {
+        String password = adminProvider.getPassword();
+        System.out.println(password);
         return password;
     }
 

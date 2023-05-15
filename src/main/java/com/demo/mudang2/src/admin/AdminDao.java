@@ -21,12 +21,11 @@ public class AdminDao {
     /**
      * 로그인 - 비밀번호 가져오기
      */
-    public PasswordInfo getPassword() {
+    public String getPassword() {
         String getPasswordQuery = "select password from user where idx = 1";
 
-        return this.jdbcTemplate.queryForObject(getPasswordQuery, (rs, rowNum) -> new PasswordInfo(
-                rs.getString("password")
-        ));
+        return this.jdbcTemplate.queryForObject(getPasswordQuery, String.class);
+
     }
 
     /**

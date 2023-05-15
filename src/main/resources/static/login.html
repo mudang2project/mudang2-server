@@ -69,15 +69,16 @@
         }
         else {
             // API에서 비밀번호 확인
-            fetch('https://localhost/admins/password', {
-                method: 'GET',
+            fetch("http://localhost/admins/login", {
+                method: "GET",
                 headers: {
                     'Content-Type': 'application/json'
                 }
             })
-                .then(response => response.json())
+                .then(response => response.toString())
                 .then(data => {
-                    if (pw.value === data.password) {
+                    if (pw.value === data) {
+                        console.log(data)
                         // 세션 생성
                         let sessionData = Math.random().toString(36).substring(2, 12);
                         sessionStorage.setItem("mudangSession", sessionData);
@@ -87,9 +88,8 @@
                         alert("비밀번호가 틀렸습니다.");
                     }
                 })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert("비밀번호 확인에 실패했습니다.");
+                .catch(function(error) {
+                    alert(error.message);
                 });
         }
 

@@ -24,9 +24,9 @@ public class AdminProvider {
      * 로그인 - 비밀번호 가져오기
      */
 
-    public PasswordInfo getPassword() throws BaseException {
+    public String getPassword() throws BaseException {
         try {
-            PasswordInfo password = adminDao.getPassword();
+            String password = adminDao.getPassword();
             return password;
         } catch (Exception exception) {
             throw new BaseException(DATABASE_ERROR);
